@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore the Solar System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #000022, #000055);
+      color: white;
+      overflow: hidden;
+    }
+
+    .header {
+      text-align: center;
+      padding: 50px;
+      background: radial-gradient(circle, #ffaa33, #ff7744, #ff4422);
+    }
+
+    .header h1 {
+      font-size: 3rem;
+      color: #ffe5b4;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+    }
+
+    .solar-system-overview {
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      margin: 20px;
+      border-radius: 10px;
+    }
+
+    .solar-system-overview h2 {
+      text-align: center;
+      color: #ffcc33;
+    }
+
+    .planets {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .planet {
+      position: relative;
+      background: rgba(0, 0, 50, 0.7);
+      padding: 20px;
+      border-radius: 10px;
+      transition: transform 0.3s;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .planet:hover {
+      transform: scale(1.05);
+    }
+
+    .planet-details {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translate(-50%, 10px);
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+      opacity: 0;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .planet:hover .planet-details {
+      opacity: 1;
+    }
+
+    .moons, .solar-system-objects {
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      margin: 20px;
+      border-radius: 10px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 10px;
+      background: radial-gradient(circle, #ffaa33, #ff7744, #ff4422);
+    }
+
+    .footer p {
+      margin: 0;
+    }
+
+    /* Starfield Background */
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('path-to-stars-image.jpg') repeat;
+      z-index: -1;
+      animation: starfield 50s linear infinite;
+    }
+
+    @keyframes starfield {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 10000px 10000px;
+      }
+    }
+
+    /* Tooltip Styling */
+    .tooltip {
+      position: absolute;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      display: none;
+      max-width: 200px;
+    }
+
+    /* Modal Styling */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      color: #000;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 100%;
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Starfield Background -->
+  <div class="stars"></div>
+
+  <!-- Header Section -->
+  <header class="header">
+    <h1>Welcome to Our Solar System</h1>
+    <p>Discover the wonders of the Sun, planets, moons, and everything else that makes our solar system extraordinary.</p>
+  </header>
+
+  <!-- Solar System Overview Section -->
+  <section class="solar-system-overview">
+    <h2>About Our Solar System</h2>
+    <p>Our solar system is home to the Sun, eight planets, dozens of moons, countless asteroids, comets, and other celestial objects. Located in the Milky Way galaxy, it's the only place we know of that harbors life – on Earth.</p>
+  </section>
+
+  <!-- Planets Section -->
+  <section class="planets">
+    <h2>Planets of the Solar System</h2>
+
+    <!-- Mercury -->
+    <article class="planet mercury" data-tooltip="Mercury is the closest planet to the Sun and the smallest in our solar system. It has no atmosphere, and its surface temperatures vary drastically between day and night.">
+      <h3>Mercury</h3>
+      <p>Mercury is the closest planet to the Sun and the smallest in our solar system. It has no atmosphere, and its surface temperatures vary drastically between day and night.</p>
+      <ul>
+        <li>Distance from Sun: 57.9 million km</li>
+        <li>Orbital Period: 88 Earth days</li>
+        <li>Moons: None</li>
+      </ul>
+      <div class="tooltip">Mercury is the closest planet to the Sun and the smallest in our solar system. It has no atmosphere, and its surface temperatures vary drastically between day and night.</div>
+    </article>
+
+    <!-- Venus -->
+    <article class="planet venus" data-tooltip="Venus is the second planet from the Sun and is known for its thick, toxic atmosphere. Its surface is hotter than any other planet in the solar system due to the greenhouse effect.">
+      <h3>Venus</h3>
+      <p>Venus is the second planet from the Sun and is known for its thick, toxic atmosphere. Its surface is hotter than any other planet in the solar system due to the greenhouse effect.</p>
+      <ul>
+        <li>Distance from Sun: 108.2 million km</li>
+        <li>Orbital Period: 225 Earth days</li>
+        <li>Moons: None</li>
+      </ul>
+      <div class="tooltip">Venus is the second planet from the Sun and is known for its thick, toxic atmosphere. Its surface is hotter than any other planet in the solar system due to the greenhouse effect.</div>
+    </article>
+
+    <!-- Earth -->
+    <article class="planet earth" data-tooltip="Earth is the third planet from the Sun and the only planet known to support life. It has one natural satellite, the Moon.">
+      <h3>Earth</h3>
+      <p>Earth is the third planet from the Sun and the only planet known to support life. It has one natural satellite, the Moon.</p>
+      <ul>
+        <li>Distance from Sun: 149.6 million km</li>
+        <li>Orbital Period: 365.25 Earth days</li>
+        <li>Moons: 1 (The Moon)</li>
+      </ul>
+      <div class="tooltip">Earth is the third planet from the Sun and the only planet known to support life. It has one natural satellite, the Moon.</div>
+    </article>
+
+    <!-- Mars -->
+    <article class="planet mars" data-tooltip="Mars, the fourth planet from the Sun, is often called the 'Red Planet' because of its reddish appearance caused by iron oxide on its surface. It's a prime candidate for future human exploration.">
+      <h3>Mars</h3>
+      <p>Mars, the fourth planet from the Sun, is often called the 'Red Planet' because of its reddish appearance caused by iron oxide on its surface. It's a prime candidate for future human exploration.</p>
+      <ul>
+        <li>Distance from Sun: 227.9 million km</li>
+        <li>Orbital Period: 687 Earth days</li>
+        <li>Moons: 2 (Phobos, Deimos)</li>
+      </ul>
+      <div class="tooltip">Mars, the fourth planet from the Sun, is often called the 'Red Planet' because of its reddish appearance caused by iron oxide on its surface. It's a prime candidate for future human exploration.</div>
+    </article>
+
+    <!-- Jupiter -->
+    <article class="planet jupiter" data-tooltip="Jupiter is the largest planet in our solar system and is known for its Great Red Spot, a giant storm. It has a strong magnetic field and dozens of moons.">
+      <h3>Jupiter</h3>
+      <p>Jupiter is the largest planet in our solar system and is known for its Great Red Spot, a giant storm. It has a strong magnetic field and dozens of moons.</p>
+      <ul>
+        <li>Distance from Sun: 778.3 million km</li>
+        <li>Orbital Period: 11.9 Earth years</li>
+        <li>Moons: 79</li>
+      </ul>
+      <div class="tooltip">Jupiter is the largest planet in our solar system and is known for its Great Red Spot, a giant storm. It has a strong magnetic field and dozens of moons.</div>
+    </article>
+
+    <!-- Saturn -->
+    <article class="planet saturn" data-tooltip="Saturn is famous for its stunning ring system, which is made of ice, rock particles, and dust. It is the second-largest planet in our solar system.">
+      <h3>Saturn</h3>
+      <p>Saturn is famous for its stunning ring system, which is made of ice, rock particles, and dust. It is the second-largest planet in our solar system.</p>
+      <ul>
+        <li>Distance from Sun: 1.4 billion km</li>
+        <li>Orbital Period: 29.5 Earth years</li>
+        <li>Moons: 83</li>
+      </ul>
+      <div class="tooltip">Saturn is famous for its stunning ring system, which is made of ice, rock particles, and dust. It is the second-largest planet in our solar system.</div>
+    </article>
+
+    <!-- Uranus -->
+    <article class="planet uranus" data-tooltip="Uranus is unique for its tilt; it rotates on its side. It has a faint ring system and is known for its blue-green color due to methane in its atmosphere.">
+      <h3>Uranus</h3>
+      <p>Uranus is unique for its tilt; it rotates on its side. It has a faint ring system and is known for its blue-green color due to methane in its atmosphere.</p>
+      <ul>
+        <li>Distance from Sun: 2.9 billion km</li>
+        <li>Orbital Period: 84 Earth years</li>
+        <li>Moons: 27</li>
+      </ul>
+      <div class="tooltip">Uranus is unique for its tilt; it rotates on its side. It has a faint ring system and is known for its blue-green color due to methane in its atmosphere.</div>
+    </article>
+
+    <!-- Neptune -->
+    <article class="planet neptune" data-tooltip="Neptune, the farthest planet from the Sun, is known for its strong winds and deep blue color. It has a ring system and several moons.">
+      <h3>Neptune</h3>
+      <p>Neptune, the farthest planet from the Sun, is known for its strong winds and deep blue color. It has a ring system and several moons.</p>
+      <ul>
+        <li>Distance from Sun: 4.5 billion km</li>
+        <li>Orbital Period: 164.8 Earth years</li>
+        <li>Moons: 14</li>
+      </ul>
+      <div class="tooltip">Neptune, the farthest planet from the Sun, is known for its strong winds and deep blue color. It has a ring system and several moons.</div>
+    </article>
+
+  </section>
+
+  <!-- Moons Section -->
+  <section class="moons">
+    <h2>Moons of Our Solar System</h2>
+    <p>Many of the planets in our solar system have moons, ranging from small, irregularly shaped bodies to large, spherical ones.</p>
+    <ul>
+      <li><strong>Earth's Moon:</strong> The only natural satellite of Earth, known simply as "the Moon".</li>
+      <li><strong>Jupiter's Moons:</strong> Includes Ganymede (the largest moon in the solar system), Callisto, Io, and Europa.</li>
+      <li><strong>Saturn's Moons:</strong> Includes Titan (the second-largest moon in the solar system), Rhea, and Enceladus.</li>
+    </ul>
+  </section>
+
+  <!-- Stars and Celestial Objects Section -->
+  <section class="solar-system-objects">
+    <h2>Other Celestial Objects</h2>
+    <p>Besides planets and moons, our solar system contains many other fascinating objects.</p>
+    <ul>
+      <li><strong>Asteroids:</strong> Rocky bodies mainly found in the asteroid belt between Mars and Jupiter.</li>
+      <li><strong>Comets:</strong> Icy bodies that release gas and dust, forming a glowing coma and tail as they approach the Sun.</li>
+      <li><strong>Stars:</strong> Our solar system is just one among billions in the galaxy. The Sun is our local star, providing light and heat to our planet.</li>
+    </ul>
+  </section>
+
+  <!-- Modal Structure -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Modal Title</h3>
+      <p>Modal content goes here.</p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Tooltip functionality
+      const planets = document.querySelectorAll('.planet');
+      planets.forEach(planet => {
+        planet.addEventListener('mouseenter', function() {
+          const tooltip = this.querySelector('.tooltip');
+          tooltip.style.display = 'block';
+        });
+        planet.addEventListener('mouseleave', function() {
+          const tooltip = this.querySelector('.tooltip');
+          tooltip.style.display = 'none';
+        });
+      });
+
+      // Modal functionality
+      const modal = document.getElementById('modal');
+      const closeModal = document.querySelector('.modal .close');
+
+      closeModal.addEventListener('click', function() {
+        modal.style.display = 'none';
+      });
+
+      window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
